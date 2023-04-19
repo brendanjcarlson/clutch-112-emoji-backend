@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from ..models import db, User, Tweet, Comment, Like
+import re
 
 
 api = Blueprint('api', __name__, url_prefix='/api')
@@ -18,7 +19,6 @@ def get_user_tweets(uid):
     if not tweets:
         return {'status': 'not ok', 'message': 'Unable to get tweets'}
     tweets = [tweet.to_dict() for tweet in tweets]
-    tweets = list(filter(lambda tweet: !tweet['body'].isalpha(), tweets))
     return {'status': 'ok', 'tweets': tweets}
 
 @api.get('/tweets/<int:id>')
