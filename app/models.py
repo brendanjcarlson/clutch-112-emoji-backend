@@ -38,9 +38,9 @@ class Tweet(db.Model):
     body = db.Column(db.String(280), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_uid = db.Column(db.String, db.ForeignKey('user.uid'), nullable=False)
-    user = db.relationship('User', backref=db.backref('tweets', lazy=True))
-    comments = db.relationship('Comment', backref='tweet', lazy=True)
-    likes = db.relationship('Like', backref='tweet', lazy=True)
+    user = db.relationship('User', backref=db.backref('user', lazy=True))
+    comments = db.relationship('Comment', backref='comments', lazy=True)
+    likes = db.relationship('Like', backref='likes', lazy=True)
 
     def __init__(self, body, user_uid):
         self.body = body
@@ -71,9 +71,9 @@ class Tweet(db.Model):
 class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_uid = db.Column(db.String, db.ForeignKey('user.uid'), nullable=False)
-    user = db.relationship('User', backref=db.backref('likes', lazy=True))
+    user = db.relationship('User', backref=db.backref('user_like', lazy=True))
     tweet_id = db.Column(db.Integer, db.ForeignKey('tweet.id'), nullable=False)
-    tweet = db.relationship('Tweet', backref=db.backref('likes', lazy=True))
+    tweet = db.relationship('Tweet', backref=db.backref('tweet_like', lazy=True))
 
     def __init__(self, user_uid, tweet_id):
         self.user_uid = user_uid
@@ -95,7 +95,7 @@ class Comment(db.Model):
     body = db.Column(db.String(280), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_uid = db.Column(db.String, db.ForeignKey('user.uid'), nullable=False)
-    user = db.relationship('User', backref=db.backref('comments', lazy=True))
+    user = db.relationship('User', backref=db.backref('comment_user', lazy=True))
     tweet_id = db.Column(db.Integer, db.ForeignKey('tweet.id'), nullable=False)
 
     def __init__(self, body, user_uid, tweet_id):
