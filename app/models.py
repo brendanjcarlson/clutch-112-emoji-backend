@@ -61,7 +61,6 @@ class Tweet(db.Model):
             'id': self.id,
             'body': self.body,
             'created_at': self.created_at,
-            'user_uid': self.user_uid,
             'user': self.user.to_dict(),
             'comments': [comment.to_dict() for comment in self.comments],
             'likes': len(self.likes)
@@ -117,7 +116,6 @@ class Comment(db.Model):
             'id': self.id,
             'body': self.body,
             'created_at': self.created_at,
-            'user_uid': self.user_uid,
             'user': self.user.to_dict(),
             'tweet_id': self.tweet_id
         }
