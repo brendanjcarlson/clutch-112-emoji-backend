@@ -53,7 +53,7 @@ def get_users():
 
 @api.get('/users/<uid>')
 def get_user(id):
-    user = User.query.get(uid)
+    user = User.query.filter_by(uid=uid).first()
     if not user:
         return {'status': 'not ok', 'message': 'Unable to get user'}
     return {'status': 'ok', 'user': user.to_dict()}
