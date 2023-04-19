@@ -30,10 +30,10 @@ def get_tweet(id):
 def create_tweet():
     user_uid = request.json.get('user_uid')
     body = request.json.get('body')
-    user = User.query.get(user_uid)
-    if not body or not user_uid:
+    user = User.query.filter_by(uid=user_uid).first()
+    if not body or not user_uid or not user:
         return {'status': 'not ok', 'message': 'Unable to create tweet'}
-    tweet = Tweet(body, user_uid).create()
+    tweet = Tweet(user_uid=user_uid, body=body).create()
     return {'status': 'ok', 'tweet': tweet.to_dict()}
 
 @api.delete('/tweets/<int:id>')
