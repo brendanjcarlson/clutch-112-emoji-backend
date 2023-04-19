@@ -27,8 +27,9 @@ def get_tweet(id):
 
 @api.post('/tweets')
 def create_tweet():
-    body = request.json.get('body')
     user_uid = request.json.get('user_uid')
+    body = request.json.get('body')
+    user = User.query.get(request.json.get('user_uid'))
     if not body or not user_uid:
         return {'status': 'not ok', 'message': 'Unable to create tweet'}
     tweet = Tweet(body, user_uid).create()
@@ -54,6 +55,18 @@ def get_user(id):
     user = User.query.get(uid)
     if not user:
         return {'status': 'not ok', 'message': 'Unable to get user'}
+    return {'status': 'ok', 'user': user.to_dict()}
+
+@api.post('/users')
+def create_user():
+    uid = request.json.get('uid')
+    name = request.json.get('displayName')
+    user = User.query.filter_by(uid=uid).first()
+    if user:
+        print('user already exists')
+        return {'status': 'not ok', 'message': 'Unable to create user'}
+    user = User(uid=uid, name=name)
+    user.create()
     return {'status': 'ok', 'user': user.to_dict()}
 
 @api.post('/like/<int:id>')

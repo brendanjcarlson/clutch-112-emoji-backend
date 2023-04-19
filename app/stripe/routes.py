@@ -5,7 +5,7 @@ stripe = Blueprint('stripe', __name__, url_prefix='/stripe')
 
 @stripe.get('/test')
 def test():
-    return {'status': 'ok', 'message': 'Stripe route works'}, 200
+    return {'status': 'ok', 'message': 'Stripe route works'}
 
 # TODO: Create routes to handle the following:
 # 1. Create a customer

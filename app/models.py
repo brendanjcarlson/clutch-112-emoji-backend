@@ -6,7 +6,7 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, unique=True, index=True, primary_key=True)
-    uid = db.Column(db.String(128), nullable=False, unique=True)
+    uid = db.Column(db.String(128), nullable=False, unique=True, index=True)
     name = db.Column(db.String(128), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
