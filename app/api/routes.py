@@ -74,18 +74,18 @@ def create_user():
     user.create()
     return {'status': 'ok', 'user': user.to_dict()}
 
-@api.post('/like/<int:id>')
-def like_tweet(id):
-    tweet = Tweet.query.get(id)
-    if not tweet:
-        return {'status': 'not ok', 'message': 'Unable to like tweet'}
-    like = Like(tweet.id).create()
-    return {'status': 'ok', 'like': like.to_dict()}
+# @api.post('/like/<int:id>')
+# def like_tweet(id):
+#     tweet = Tweet.query.get(id)
+#     if not tweet:
+#         return {'status': 'not ok', 'message': 'Unable to like tweet'}
+#     like = Like(tweet.id).create()
+#     return {'status': 'ok', 'like': like.to_dict()}
 
-@api.delete('/like/<int:id>')
-def unlike_tweet(id):
-    like = Like.query.get(id)
-    if not like:
-        return {'status': 'not ok', 'message': 'Unable to unlike tweet'}
-    like.delete()
-    return {'status': 'ok', 'like': like.to_dict()}
+# @api.delete('/like/<int:id>')
+# def unlike_tweet(id):
+#     like = Like.query.get(id)
+#     if not like:
+#         return {'status': 'not ok', 'message': 'Unable to unlike tweet'}
+#     like.delete()
+#     return {'status': 'ok', 'like': like.to_dict()}
