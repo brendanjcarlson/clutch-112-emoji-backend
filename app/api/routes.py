@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from ..models import User, Tweet, Comment, Like
 
+
 api = Blueprint('api', __name__, url_prefix='/api')
 
 
@@ -29,7 +30,7 @@ def get_tweet(id):
 def create_tweet():
     user_uid = request.json.get('user_uid')
     body = request.json.get('body')
-    user = User.query.get(request.json.get('user_uid'))
+    user = User.query.get(user_uid)
     if not body or not user_uid:
         return {'status': 'not ok', 'message': 'Unable to create tweet'}
     tweet = Tweet(body, user_uid).create()
