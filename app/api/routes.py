@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from ..models import User, Tweet, Comment, Like
+from ..models import db, User, Tweet, Comment, Like
 
 
 api = Blueprint('api', __name__, url_prefix='/api')
