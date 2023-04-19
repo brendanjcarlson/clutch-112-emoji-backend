@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clutch-112 Emoji Backend</title>
+  </head>
+  <body>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+      h1 {
+        text-align: center;
+        margin: 10px;
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 4px;
+      }
+      .card {
+        width: 500px;
+        border: 1px solid black;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        padding: 10px;
+      }
+      .subcard {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .subcard h2 {
+        font-size: 18px;
+      }
+      .get {
+        background-color: green;
+        color: white;
+        padding: 2px 4px;
+        border-radius: 8px;
+      }
+      .post {
+        background-color: blue;
+        color: white;
+        padding: 2px 4px;
+        border-radius: 8px;
+      }
+      .delete {
+        background-color: red;
+        color: white;
+        padding: 2px 4px;
+        border-radius: 8px;
+      }
+    </style>
+    <main>
+      <div>
+        <h1>Clutch-112 Emoji Backend</h1>
+
+        <div class="card">
+          <h2>Tweets</h2>
+          <div class="subcard">
+            <h2><span class="get">GET</span>&nbsp;/tweets</h2>
+            <p>Get all tweets</p>
+          </div>
+          <div class="subcard">
+            <h2><span class="get">GET</span>&nbsp;/tweets/:uid</h2>
+            <p>Get all tweets for a user by uid</p>
+          </div>
+          <div class="subcard">
+            <h2><span class="get">GET</span>&nbsp;/tweets/:id</h2>
+            <p>Get a single tweet by id</p>
+          </div>
+          <div class="subcard">
+            <h2><span class="post">POST</span>&nbsp;/tweets</h2>
+            <p>Create a new tweet</p>
+          </div>
+          <div class="subcard">
+            <h2><span class="delete">DELETE</span>&nbsp;/tweets/:id</h2>
+            <p>Delete a tweet</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Users</h2>
+          <div class="subcard">
+            <h2><span class="get">GET</span>&nbsp;/users</h2>
+            <p>Get all users</p>
+          </div>
+          <div class="subcard">
+            <h2><span class="get">GET</span>&nbsp;/users/:uid</h2>
+            <p>Get a single user by uid</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Likes</h2>
+          <div class="subcard">
+            <h2><span class="post">GET</span>&nbsp;/like/:id</h2>
+            <p>Like a post by id</p>
+          </div>
+          <div class="subcard">
+            <h2><span class="delete">DELETE</span>&nbsp;/like/:id</h2>
+            <p>Unlike a post by id</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
