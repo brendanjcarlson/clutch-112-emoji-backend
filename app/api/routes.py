@@ -7,17 +7,17 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 @api.get('/tweets')
 def get_tweets():
-    tweets = Tweet.query.order_by(created_at).all()
+    tweets = Tweet.query.order_by(Tweet.created_at.asc()).all()
     if not tweets:
         return {'status': 'not ok', 'message': 'Unable to get tweets'}
     return {'status': 'ok', 'tweets': [tweet.to_dict() for tweet in tweets]}
 
 @api.get('/tweets/<uid>')
 def get_user_tweets(uid):
-    tweets = Tweet.query.filter_by(user_uid=uid).all()
+    tweets = Tweet.query.filter_by(user_uid=uid).order_by(Tweet.created_at.asc()).all()
     if not tweets:
         return {'status': 'not ok', 'message': 'Unable to get tweets'}
-    return {'status': 'ok', 'tweets': [tweet.to_dict() for tweet in tweets]}
+    return {'status': 'ok', 'tweets': [tweet.to_dict() if tweet.to_dict().body.isalpha() for tweet in tweets]}
 
 @api.get('/tweets/<int:id>')
 def get_tweet(id):
