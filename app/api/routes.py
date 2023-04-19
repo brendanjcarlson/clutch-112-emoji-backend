@@ -7,7 +7,7 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 @api.get('/tweets')
 def get_tweets():
-    tweets = Tweet.query.all()
+    tweets = Tweet.query.order_by(created_at).all()
     if not tweets:
         return {'status': 'not ok', 'message': 'Unable to get tweets'}
     return {'status': 'ok', 'tweets': [tweet.to_dict() for tweet in tweets]}
