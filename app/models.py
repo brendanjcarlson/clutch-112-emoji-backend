@@ -73,7 +73,6 @@ class Like(db.Model):
     user_uid = db.Column(db.String, db.ForeignKey('user.uid'), nullable=False)
     user = db.relationship('User', backref=db.backref('user_like', lazy=True))
     tweet_id = db.Column(db.Integer, db.ForeignKey('tweet.id'), nullable=False)
-    tweet = db.relationship('Tweet', backref=db.backref('tweet_like', lazy=True))
 
     def __init__(self, user_uid, tweet_id):
         self.user_uid = user_uid
