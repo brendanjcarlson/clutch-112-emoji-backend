@@ -62,11 +62,12 @@ def get_user(id):
 def create_user():
     uid = request.json.get('uid')
     name = request.json.get('displayName')
+    img = request.json.get('photoURL')
     user = User.query.filter_by(uid=uid).first()
     if user:
         print('user already exists')
         return {'status': 'not ok', 'message': 'Unable to create user'}
-    user = User(uid=uid, name=name)
+    user = User(uid=uid, name=name, img=img)
     user.create()
     return {'status': 'ok', 'user': user.to_dict()}
 

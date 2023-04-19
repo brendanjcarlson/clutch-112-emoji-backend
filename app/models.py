@@ -8,11 +8,13 @@ class User(db.Model):
     id = db.Column(db.Integer, unique=True, index=True, primary_key=True)
     uid = db.Column(db.String(128), nullable=False, unique=True, index=True)
     name = db.Column(db.String(128), nullable=False)
+    img = db.Column(db.String(500), nullable=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    def __init__(self, uid, name):
+    def __init__(self, uid, name, img):
         self.uid = uid
         self.name = name
+        self.img = img
 
     def create(self):
         db.session.add(self)
@@ -29,6 +31,7 @@ class User(db.Model):
             'id': self.id,
             'uid': self.uid,
             'name': self.name,
+            'img': self.img,
         }
 
 
