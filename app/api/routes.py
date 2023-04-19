@@ -15,7 +15,7 @@ def get_tweets():
 
 @api.get('/tweets/<uid>')
 def get_user_tweets(uid):
-    tweets = Tweet.query.filter_by(user_uid=uid).order_by(Tweet.created_at.asc()).all()
+    tweets = Tweet.query.filter_by(user_uid=uid).order_by(Tweet.created_at.desc()).all()
     if not tweets:
         return {'status': 'not ok', 'message': 'Unable to get tweets'}
     tweets = [tweet.to_dict() for tweet in tweets]
