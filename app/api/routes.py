@@ -54,7 +54,7 @@ def get_users():
     return {'status': 'ok', 'users': [user.to_dict() for user in users]}
 
 @api.get('/users/<uid>')
-def get_user(id):
+def get_user(uid):
     user = User.query.filter_by(uid=uid).first()
     if not user:
         return {'status': 'not ok', 'message': 'Unable to get user'}
